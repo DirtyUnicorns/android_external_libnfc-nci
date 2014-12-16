@@ -20,7 +20,7 @@ D_CFLAGS := -DANDROID -DBUILDCFG=1
 # Build shared library system/lib/libnfc-nci.so for stack code.
 
 include $(CLEAR_VARS)
-LOCAL_PRELINK_MODULE := false
+LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_ARM_MODE := arm
 LOCAL_MODULE := libnfc-nci
 LOCAL_MODULE_TAGS := optional
