@@ -1682,7 +1682,7 @@ static void nfa_dm_poll_disc_cback (tNFA_DM_RF_DISC_EVT event, tNFC_DISCOVER *p_
                 {
                     /* activate LLCP */
                     nfa_p2p_activate_llcp (p_data);
-                    if (!nfa_p2p_cb.is_initiator)
+                    if (nfa_dm_cb.p_activate_ntf)
                     {
                         GKI_freebuf (nfa_dm_cb.p_activate_ntf);
                         nfa_dm_cb.p_activate_ntf = NULL;
