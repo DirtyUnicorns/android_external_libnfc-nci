@@ -1042,12 +1042,14 @@ static void nfa_rw_handle_t4t_evt (tRW_EVENT event, tRW_DATA *p_rw_data)
     case RW_T4T_NDEF_FORMAT_CPLT_EVT:
         /* Command complete - perform cleanup, notify the app */
         nfa_rw_command_complete();
+        nfa_rw_command_complete ();
         nfa_rw_cb.cur_op = NFA_RW_OP_MAX;
         nfa_rw_cb.ndef_cur_size = p_rw_data->ndef.cur_size;
         nfa_rw_cb.ndef_max_size = p_rw_data->ndef.max_size;
         conn_evt_data.status = (p_rw_data->status == NFC_STATUS_OK) ? NFA_STATUS_OK : NFA_STATUS_FAILED;
 
         nfa_dm_act_conn_cback_notify(NFA_FORMAT_CPLT_EVT, &conn_evt_data);
+        nfa_dm_act_conn_cback_notify (NFA_FORMAT_CPLT_EVT, &conn_evt_data);
         break;
 
     case RW_T4T_NDEF_READ_EVT:              /* Segment of data received from type 4 tag */
@@ -2030,6 +2032,7 @@ static void nfa_rw_format_tag (tNFA_RW_MSG *p_data)
     else if (protocol == NFC_PROTOCOL_ISO_DEP)
     {
         status = RW_T4tFormatNDef();
+        status = RW_T4tFormatNDef ();
     }
 
     /* If unable to format NDEF, notify the app */
