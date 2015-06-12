@@ -57,7 +57,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_RELATIVE_PATH := hw
 
 ifeq ($(BOARD_NFC_CHIPSET),pn547)
-    include $(LOCAL_PATH)/halimpl/pn54x/Android.mk
+    include $(LOCAL_PATH)/halimpl/pn54x/hal.mk
 else
 
 ifneq ($(BOARD_NFC_HAL_SUFFIX),)
