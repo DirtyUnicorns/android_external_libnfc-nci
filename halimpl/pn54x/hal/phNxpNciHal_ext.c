@@ -731,6 +731,31 @@ NFCSTATUS phNxpNciHal_write_ext(uint16_t *cmd_len, uint8_t *p_cmd_data,
 //        status = NFCSTATUS_FAILED;
         NXPLOG_NCIHAL_D ("> Going through workaround - Dirty Set Config - End ");
     }
+    else if(p_cmd_data[0] == 0x21 &&
+            p_cmd_data[1] == 0x00 )
+    {
+        NXPLOG_NCIHAL_D ("> Going through workaround - Add Mifare Classic in Discovery Map");
+        p_cmd_data[*cmd_len] = 0x80;
+        p_cmd_data[*cmd_len +1] = 0x01;
+        p_cmd_data[*cmd_len + 2] = 0x80;
+        p_cmd_data[5] = 0x01;
+        p_cmd_data[6] = 0x01;
+        p_cmd_data[2] += 3;
+        p_cmd_data[3] += 1;
+        *cmd_len += 3;
+    }
+    else if (*cmd_len == 3 &&
+             p_cmd_data[0] == 0x00 &&
+             p_cmd_data[1] == 0x00 &&
+             p_cmd_data[2] == 0x00 )
+    {
+        NXPLOG_NCIHAL_D ("> Going through workaround - ISO-DEP Presence Check ");
+        p_cmd_data[0] = 0x2F;
+        p_cmd_data[1] = 0x11;
+        p_cmd_data[2] = 0x00;
+        status = NFCSTATUS_SUCCESS;
+        NXPLOG_NCIHAL_D ("> Going through workaround - ISO-DEP Presence Check - End");
+    }
 
 #if 0
     else if ( (p_cmd_data[0] == 0x20 && p_cmd_data[1] == 0x02 ) &&
