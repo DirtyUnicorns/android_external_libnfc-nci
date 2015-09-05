@@ -55,7 +55,8 @@ static uint32_t iCoreInitRspLen;
 
 extern uint32_t timeoutTimerId;
 
-extern void read_retry();
+extern NFCSTATUS read_retry();
+
 /************** HAL extension functions ***************************************/
 static void hal_extns_write_rsp_timeout_cb(uint32_t TimerId, void *pContext);
 /*Proprietary cmd sent to HAL to send reader mode flag
