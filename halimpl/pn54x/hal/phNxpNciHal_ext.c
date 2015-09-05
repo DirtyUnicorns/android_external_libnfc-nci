@@ -298,7 +298,6 @@ NFCSTATUS phNxpNciHal_process_ext_rsp (uint8_t *p_ntf, uint16_t *p_len)
         }
         else
         {
-            NXPLOG_NCIHAL_D ("> STATUS_RF_FRAME ERROR response - workaround");
             p_ntf[p_ntf[2]+ 2] |= 0x01;
         }
     }
